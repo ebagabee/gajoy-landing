@@ -1,16 +1,18 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresnece } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
   Code,
   Database,
   Globe,
+  Instagram,
   Layout,
-  Mail,
   Server,
   Smartphone,
+  Youtube,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("projects");
@@ -141,6 +143,168 @@ export default function Home() {
           <ChevronDown size={32} />
         </motion.div>
       </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-12 text-center">Quem Somos</h2>
+          <div className="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12">
+            <motion.div
+              className="bg-white bg-opacity-10 p-8 rounded-lg shadow-xl backdrop-blur-sm max-w-sm"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Image
+                src="./assets/placeholder.svg"
+                width={150}
+                height={150}
+                alt="Joy"
+                className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-purple-400"
+              />
+              <h3 className="text-2xl font-semibold mb-4 text-center">Joy</h3>
+              <p className="text-gray-300 text-center">
+                Desenvolvedora Frontend com paixão por UX/UI e arquitetura de
+                sistemas. Especialista em design responsivo e moderno.
+              </p>
+            </motion.div>
+            <motion.div
+              className="bg-white bg-opacity-10 p-8 rounded-lg shadow-xl backdrop-blur-sm max-w-sm"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Image
+                src="./assets/placeholder.svg"
+                width={150}
+                height={150}
+                alt="Gabe"
+                className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-blue-400"
+              />
+              <h3 className="text-2xl font-semibold mb-4 text-center">Gabe</h3>
+              <p className="text-gray-300 text-center">
+                Desenvolvedor Full Stack com foco em Web e Mobile. Experiente em
+                TypeScript, Rails e PHP.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects & Skills Section */}
+      <section id="projects" className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-center mb-12">
+            <button
+              className={`px-6 py-2 rounded-l-full ${
+                activeTab === "projects" ? "bg-purple-600" : "bg-gray-700"
+              }`}
+              onClick={() => setActiveTab("projects")}
+            >
+              Projetos
+            </button>
+            <button
+              className={`px-6 py-2 rounded-r-full ${
+                activeTab === "skills" ? "bg-purple-600" : "bg-gray-700"
+              }`}
+              onClick={() => setActiveTab("skills")}
+            >
+              Habilidades
+            </button>
+          </div>
+
+          <AnimatePresence mode="wait">
+            {activeTab === "projects" && (
+              <motion.div
+                key="projects"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {projects.map((project, index) => (
+                    <motion.div
+                      key={index}
+                      className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Image
+                        width={150}
+                        height={150}
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="p-6">
+                        <h3 className="text-2xl font-semibold mb-2">
+                          {project.name}
+                        </h3>
+                        <p className="text-gray-300">{project.description}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {activeTab === "skills" && (
+              <motion.div
+                key="skills"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+                  {skills.map((skill, index) => (
+                    <motion.div
+                      key={index}
+                      className="flex flex-col items-center bg-white bg-opacity-10 p-6 rounded-lg shadow-lg"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {skill.icon}
+                      <h3 className="mt-4 text-xl font-semibold">
+                        {skill.name}
+                      </h3>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 py-8">
+        <div className="container mx-auto px-6 text-center">
+          <p className="text-gray-400">
+            &copy; {new Date().getFullYear()} Gajoy. Todos os direitos
+            reservados.
+          </p>
+          <div className="mt-4 flex justify-center space-x-4">
+            <a
+              href="https://www.youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors duration-300"
+            >
+              <Youtube size={24} />
+              <span className="sr-only">YouTube</span>
+            </a>
+            <a
+              href="https://www.instagram.com/gajoytech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-white transition-colors duration-300"
+            >
+              <Instagram size={22} />
+              <span className="sr-only">Instagram</span>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
