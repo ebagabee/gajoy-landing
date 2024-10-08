@@ -13,6 +13,11 @@ import {
   Youtube,
 } from "lucide-react";
 import Image from "next/image";
+import FiveFps from "@/app/assets/five.png";
+import Rood from "@/app/assets/rood.png";
+import Next from "@/app/assets/next.png";
+import Gabe from "@/app/assets/gabe.png";
+import Joy from "@/app/assets/joy.png";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("projects");
@@ -20,18 +25,22 @@ export default function Home() {
   const projects = [
     {
       name: "Next Ambient",
-      description: "Descricao",
-      image: "/placeholder.svg?height=300&width=400",
+      description: "Landing Page para empresa de serviços ambientais",
+      image: Next,
+      url: "https://nextambient.tech/",
     },
     {
       name: "Rood Traffic",
-      description: "Descricao",
-      image: "/placeholder.svg?height=300&width=400",
+      description:
+        "Exposição de marca que aproxima empreendimento de empreendedores",
+      image: Rood,
+      url: "https://gajoyy.github.io/Rood-Trafic/",
     },
     {
       name: "FiveFPS",
-      description: "Descricao",
-      image: "/placeholder.svg?height=300&width=400",
+      description: "Landing Page para produto de melhoria de software",
+      image: FiveFps,
+      url: "https://gajoyy.github.io/LandingPage-FiveFPS/",
     },
   ];
 
@@ -150,12 +159,12 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-12 text-center">Quem Somos</h2>
           <div className="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12">
             <motion.div
-              className="bg-white bg-opacity-10 p-8 rounded-lg shadow-xl backdrop-blur-sm max-w-sm"
+              className="bg-white bg-opacity-10 p-8 rounded-lg shadow-xl max-w-sm"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Image
-                src="./assets/placeholder.svg"
+                src={Joy}
                 width={150}
                 height={150}
                 alt="Joy"
@@ -168,12 +177,12 @@ export default function Home() {
               </p>
             </motion.div>
             <motion.div
-              className="bg-white bg-opacity-10 p-8 rounded-lg shadow-xl backdrop-blur-sm max-w-sm"
+              className="bg-white bg-opacity-10 p-8 rounded-lg shadow-xl max-w-sm"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Image
-                src="./assets/placeholder.svg"
+                src={Gabe}
                 width={150}
                 height={150}
                 alt="Gabe"
@@ -228,19 +237,25 @@ export default function Home() {
                       whileHover={{ scale: 1.05 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <Image
-                        width={150}
-                        height={150}
-                        src={project.image}
-                        alt={project.name}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="p-6">
-                        <h3 className="text-2xl font-semibold mb-2">
-                          {project.name}
-                        </h3>
-                        <p className="text-gray-300">{project.description}</p>
-                      </div>
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Image
+                          width={400}
+                          height={400}
+                          src={project.image}
+                          alt={project.name}
+                          className="w-full h-48 object-cover object-top  "
+                        />
+                        <div className="p-6">
+                          <h3 className="text-2xl font-semibold mb-2">
+                            {project.name}
+                          </h3>
+                          <p className="text-gray-300">{project.description}</p>
+                        </div>
+                      </a>
                     </motion.div>
                   ))}
                 </div>
@@ -285,7 +300,7 @@ export default function Home() {
           </p>
           <div className="mt-4 flex justify-center space-x-4">
             <a
-              href="https://www.youtube.com"
+              href="https://www.youtube.com/@ga-joy"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors duration-300"
@@ -299,7 +314,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors duration-300"
             >
-              <Instagram size={22} />
+              <Instagram size={21} />
               <span className="sr-only">Instagram</span>
             </a>
           </div>
